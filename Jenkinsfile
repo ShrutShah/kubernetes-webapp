@@ -46,8 +46,15 @@ node{
               sh "sudo docker push shrutshah/mywebapp:v1"
 
         }
-    stage('Deploy'){
-        sh "sudo docker run -p 8081:8080 -d --name mywebapp shrutshah/mywebapp:v1"
+    stage('Test'){
+	 sh """	if docker ps | grep mywebapp
+		then
+		sudo docker rm -f mywebapp 
+		sudo docker run -p 8081:8080 -d --name mywebapp shrutshah/mywebapp:v1
+		else
+		sudo docker run -p 8081:8080 -d --name mywebapp shrutshah/mywebapp:v1
+		fi
+        """
     }
 
 
