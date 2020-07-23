@@ -53,7 +53,7 @@ node{
 
 	 stage('Deploy'){
 	 sh """	
-	 	ssh admin@api.devopsal.in
+	 	
 		
 		
 		export length=\$(sudo kubectl get deployments | grep mywebapp | wc -l)
