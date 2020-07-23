@@ -27,13 +27,7 @@ node{
 		      sh "${mvncmd} package"
     		
     	}
-	stage('Sonar Analysis'){
-		def mvnhome = tool name: 'maven-1', type: 'maven'
-		withSonarQubeEnv('sonar-qube'){
-			sh "${mvnhome}/bin/mvn sonar:sonar"
-		}
-		
-	}
+	
     stage('Build Docker image'){
               sh "sudo docker build . -t shrutshah/mywebapp:v1"
 
