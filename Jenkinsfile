@@ -3,6 +3,21 @@ node{
 		      git credentialsId: 'github', url: 'https://github.com/ShrutShah/docker-webapp.git'
     	}
 
+	stage('Sonar Analysis'){
+    		  
+			
+		  withCredentials([string(credentialsId: 'sonar-qube', variable: 'sonar-qube')]) {
+			  def mvnhome = tool name: 'maven-1', type: 'maven'
+		          def mvncmd = "${mvnhome}/bin/mvn"
+			  def sonarToken = "sonar.login=${sonar-qube}"
+			  sh "${mvncmd} sonar:sonar -D 'sonar.host.url=http://13.127.241.70:9000'  -D${sonarToken}"
+  
+		}
+		      
+    		
+    	}
+	
+
     	stage('Mvn clean'){
     		  def mvnhome = tool name: 'maven-1', type: 'maven'
 		      def mvncmd = "${mvnhome}/bin/mvn"
