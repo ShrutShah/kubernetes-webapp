@@ -56,14 +56,14 @@ node{
 	 	
 		
 		
-		export length=\$(sudo kubectl get deployments | grep mywebapp | wc -l)
+		export length=\$(kubectl get deployments | grep mywebapp | wc -l)
 		 if [ \$length -gt 0 ]
 		 then
-		 sudo kubectl rollout restart deployment/mywebapp
-		 sudo kubectl rollout status deployment/mywebapp
+		 kubectl rollout restart deployment/mywebapp
+		 kubectl rollout status deployment/mywebapp
 		 else
-		 sudo kubectl create deployment mywebapp --image=shrutshah/mywebapp:v1
-		 sudo kubectl scale deployment mywebapp --replicas=3
+		 kubectl create deployment mywebapp --image=shrutshah/mywebapp:v1
+		 kubectl scale deployment mywebapp --replicas=3
 		 sudo kubectl expose deployment mywebapp --port 8080 --type LoadBalancer
 		 fi
 		
