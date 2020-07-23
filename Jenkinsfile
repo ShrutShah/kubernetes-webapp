@@ -47,7 +47,7 @@ node{
 
         }
     stage('Test'){
-	 sh """	if sudo docker ps | grep mywebapp
+	 sh """	if [ sudo docker ps | grep mywebapp ]
 		then
 		sudo docker rm -f mywebapp 
 		sudo docker run -p 8081:8080 -d --name mywebapp shrutshah/mywebapp:v1
