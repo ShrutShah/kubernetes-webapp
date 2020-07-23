@@ -2,22 +2,7 @@ node{
     	stage ('SCM Checkout'){
 		      git credentialsId: 'github', url: 'https://github.com/ShrutShah/docker-webapp.git'
     	}
-
-	stage('Sonar Analysis'){
-    		  
-			
-		  withCredentials([string(credentialsId: 'sonar-qube', variable: 'sonar-qube')]) {
-			  def mvnhome = tool name: 'maven-1', type: 'maven'
-		          def mvncmd = "${mvnhome}/bin/mvn"
-			  def sonarToken = "sonar.login=${sonar-qube}"
-			  sh "${mvncmd} admin:admin -D 'sonar.host.url=http://13.127.241.70:9000'  -D${sonarToken}"
-  
-		}
-		      
-    		
-    	}
 	
-
     	stage('Mvn clean'){
     		  def mvnhome = tool name: 'maven-1', type: 'maven'
 		      def mvncmd = "${mvnhome}/bin/mvn"
@@ -42,6 +27,13 @@ node{
 		      sh "${mvncmd} package"
     		
     	}
+	stage('Sonar Analysis'){
+		def mvnhome = tool name: 'maven-1', type: 'maven'
+		withSonarQubeEnv('sonar-qube'){
+			sh "$(mvnhome)/bin/mvn sonar:sonar"
+		}
+		
+	}
     stage('Build Docker image'){
               sh "sudo docker build . -t shrutshah/mywebapp:v1"
 
