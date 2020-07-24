@@ -40,7 +40,7 @@ node{
               sh "sudo docker push shrutshah/mywebapp:v1"
 
         }
-    stage('Test on docker container ENV'){
+    stage('Testing Environment (docker)'){
 	 sh """	if sudo docker ps -a | grep mywebapp 
 		then
 		sudo docker rm -f mywebapp 
