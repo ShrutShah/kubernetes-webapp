@@ -3,25 +3,25 @@ node{
 		      git credentialsId: 'github', url: 'https://github.com/ShrutShah/docker-webapp.git'
     	}
 	
-    	stage('Mavn clean'){
+    	stage('Maven clean'){
     		  def mvnhome = tool name: 'maven-1', type: 'maven'
 		      def mvncmd = "${mvnhome}/bin/mvn"
 		      sh "${mvncmd} clean "
     		
     	}
-	stage('Mavn validate'){
+	stage('Maven validate'){
     		  def mvnhome = tool name: 'maven-1', type: 'maven'
 		      def mvncmd = "${mvnhome}/bin/mvn"
 		      sh "${mvncmd} validate"
     		
     	}
-	stage('Mavn Compile'){
+	stage('Maven Compile'){
     		  def mvnhome = tool name: 'maven-1', type: 'maven'
 		      def mvncmd = "${mvnhome}/bin/mvn"
 		      sh "${mvncmd} compile"
     		
     	}
-	stage('Mavn Package'){
+	stage('Maven Package'){
     		  def mvnhome = tool name: 'maven-1', type: 'maven'
 		      def mvncmd = "${mvnhome}/bin/mvn"
 		      sh "${mvncmd} package"
