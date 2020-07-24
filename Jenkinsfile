@@ -3,7 +3,7 @@ node{
 		      git credentialsId: 'github', url: 'https://github.com/ShrutShah/docker-webapp.git'
     	}
 	
-    	stage('Maven clean'){
+    	stage('Maven   clean'){
     		  def mvnhome = tool name: 'maven-1', type: 'maven'
 		      def mvncmd = "${mvnhome}/bin/mvn"
 		      sh "${mvncmd} clean "
