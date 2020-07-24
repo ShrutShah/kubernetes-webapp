@@ -31,6 +31,9 @@ node{
 		def mvnhome = tool name: 'maven-1', type: 'maven'
 		withSonarQubeEnv('sonar-qube'){
 			sh "${mvnhome}/bin/mvn sonar:sonar"
+		
+		input message: 'Manual Checkpoint 1'	
+			
 		}
 		
 	}
@@ -56,6 +59,7 @@ node{
 		sudo docker run -p 8081:8080 -d --name mywebapp shrutshah/mywebapp:v1
 		fi
         """
+	    input message: 'Manual Checkpoint 2'	
     }
     stage('Deploy Environment (Kubernetes)'){
 	 sh """	
