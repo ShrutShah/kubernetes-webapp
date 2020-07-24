@@ -3,25 +3,25 @@ node{
 		      git credentialsId: 'github', url: 'https://github.com/ShrutShah/docker-webapp.git'
     	}
 	
-    	stage('Mvn clean'){
+    	stage('Mavn clean'){
     		  def mvnhome = tool name: 'maven-1', type: 'maven'
 		      def mvncmd = "${mvnhome}/bin/mvn"
 		      sh "${mvncmd} clean "
     		
     	}
-	stage('Mvn validate'){
+	stage('Mavn validate'){
     		  def mvnhome = tool name: 'maven-1', type: 'maven'
 		      def mvncmd = "${mvnhome}/bin/mvn"
 		      sh "${mvncmd} validate"
     		
     	}
-	stage('Mvn Compile'){
+	stage('Mavn Compile'){
     		  def mvnhome = tool name: 'maven-1', type: 'maven'
 		      def mvncmd = "${mvnhome}/bin/mvn"
 		      sh "${mvncmd} compile"
     		
     	}
-	stage('Mvn Package'){
+	stage('Mavn Package'){
     		  def mvnhome = tool name: 'maven-1', type: 'maven'
 		      def mvncmd = "${mvnhome}/bin/mvn"
 		      sh "${mvncmd} package"
@@ -40,7 +40,7 @@ node{
               sh "sudo docker push shrutshah/mywebapp:v1"
 
         }
-    stage('Test'){
+    stage('Test on docker container ENV'){
 	 sh """	if sudo docker ps -a | grep mywebapp 
 		then
 		sudo docker rm -f mywebapp 
